@@ -30,15 +30,15 @@ var
 	SHOW_CIRCLES_COUNT = 20,
 	SOUND_FILE = "Eris.ogg";
 
-AudioDance.play = function() {
+AudioDance.play = function(fn) {
 	if (!window.webkitAudioContext) {
 		throw "UnSupported AudioContext";
 	}
 	
-	createAudioContext();
+	createAudioContext(fn);
 }
 
-function createAudioContext() {
+function createAudioContext(fn) {
 	context = new webkitAudioContext();
 	source = context.createBufferSource();
 	gainNode = context.createGainNode();
@@ -52,6 +52,7 @@ function createAudioContext() {
 
 	createXHR("sound/" + SOUND_FILE, function(xhr) {
 		init(xhr);
+        fn();
 	});
 	
 	timeDomainData = new Uint8Array(analyserNode.frequencyBinCount);

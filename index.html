@@ -32,51 +32,52 @@
 	<script type="text/javascript" charset="utf-8">
 	$(function() {
 		Deferred.define();
-		AudioDance.play();
+		
+		AudioDance.play(function() {
+			var SPEED = 700,
+					MARGIN = 70,
 
-		var SPEED = 700,
-			MARGIN = 70,
+					winHeight = $(window).height(),
+					winWidth = $(window).width(),
 
-			winHeight = $(window).height(),
-			winWidth = $(window).width(),
+					back = $("#back")
+							.css({
+								height: winHeight,
+								width: winWidth + MARGIN
+							})
+					;
 
-			back = $("#back")
-				.css({
-						height: winHeight,
-						width: winWidth + MARGIN
-					})
-			;
-
-		loop();
-		function loop() {
-			next(function() {
-				var deferred = new Deferred();
-				back
-					.animate({
+			loop();
+			function loop() {
+				next(function() {
+					var deferred = new Deferred();
+					back
+							.animate({
 						left: -MARGIN
 					}, {duration: SPEED, easing: "linear", complete: function() {
 						deferred.call();
 					}
-				});
-				return deferred;
-			}).
-			//wait(0.5).
-			next(function() {
-				var deferred = new Deferred();
-				back
-					.animate({
-						left: 0
-					}, {duration: SPEED, easing: "linear", complete: function() {
-						deferred.call();
-					}
-				});
-				return deferred;
-			}).
-			//wait(0.5).
-			next(function() {
-				loop();
-			});
-		}
+					});
+					return deferred;
+				}).
+					//wait(0.5).
+						next(function() {
+							var deferred = new Deferred();
+							back
+									.animate({
+								left: 0
+							}, {duration: SPEED, easing: "linear", complete: function() {
+								deferred.call();
+							}
+							});
+							return deferred;
+						}).
+					//wait(0.5).
+						next(function() {
+							loop();
+						});
+			}
+		});
 
 	});
 	</script>
