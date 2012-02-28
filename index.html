@@ -61,22 +61,22 @@
 					});
 					return deferred;
 				}).
-					//wait(0.5).
-						next(function() {
-							var deferred = new Deferred();
-							back
-									.animate({
-								left: 0
-							}, {duration: SPEED, easing: "linear", complete: function() {
-								deferred.call();
-							}
-							});
-							return deferred;
-						}).
-					//wait(0.5).
-						next(function() {
-							loop();
-						});
+				//wait(0.5).
+				next(function() {
+					var deferred = new Deferred();
+					back
+							.animate({
+						left: 0
+					}, {duration: SPEED, easing: "linear", complete: function() {
+						deferred.call();
+					}
+					});
+					return deferred;
+				}).
+				//wait(0.5).
+				next(function() {
+					loop();
+				});
 			}
 		});
 
