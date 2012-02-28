@@ -12,11 +12,10 @@
 		}
 
 		#back {
-			background-image: url('img/back1.png');
-			background-repeat: repeat;
 			position: absolute;
 			top: 0;
 			left: 0;
+			color: black;
 		}
 
 		canvas {
@@ -32,20 +31,22 @@
 	<script type="text/javascript" charset="utf-8">
 	$(function() {
 		Deferred.define();
-		
+
 		AudioDance.play(function() {
 			var SPEED = 700,
-					MARGIN = 70,
+				MARGIN = 70,
 
-					winHeight = $(window).height(),
-					winWidth = $(window).width(),
+				winHeight = $(window).height(),
+				winWidth = $(window).width(),
 
-					back = $("#back")
-							.css({
-								height: winHeight,
-								width: winWidth + MARGIN
-							})
-					;
+				back = $("#back")
+						.css({
+							height: winHeight,
+							width: winWidth + MARGIN,
+							"background-image": "url('img/back1.png')",
+							"background-repeat": "repeat"
+						}).html("")
+				;
 
 			loop();
 			function loop() {
@@ -87,7 +88,7 @@
 	Author: hisasann
 	SpecialThanks: ken_c_lo
 	-->
-	<div id="back"></div>
+	<div id="back">Loding...</div>
 
 	<canvas id="canvas" resize></canvas>
 	<img id="apple" src="img/apple.png" style="display:none;">
